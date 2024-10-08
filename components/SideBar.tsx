@@ -6,25 +6,25 @@ import { LayoutDashboard, Bell, BookOpen, Calendar, FolderOpen, HelpCircle, Chev
 import logo from "@/public/logo2.png"
 
 const Sidebar = () => {
-  const [isCollapsed, setIsCollapsed] = useState(false)
+  const [isCollapsed, setIsCollapsed] = useState(true)
 
   return (
-    <div className={`bg-white text-gray-800 transition-all duration-300 ease-in-out ${isCollapsed ? 'w-16' : 'w-64'}`}>
+    <div className={`bg-white text-gray-800 transition-all duration-300  absolute sm:static ease-in-out  ${isCollapsed ? ' w-16 sm:w-20 h-full' : 'w-64 absolute  h-full sm:static'}`}>
  <img 
           src={logo.src} 
           alt="Study Sphere Logo" 
           width={232} 
           height={15} 
-          className={` z-50 ${isCollapsed ? 'mx-auto' : 'mr-2'}`} 
+          className={` z-50 mt-4 ${isCollapsed ? 'mx-auto' : 'mr-2'}`} 
         />
 
-      <div className="flex items-center justify-between px-4">
+      <div className="flex items-center justify-between px-4 relative">
         {!isCollapsed && <h2 className="text-2xl font-semibold"></h2>}
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="p-1 rounded-full hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300"
+          className={`${isCollapsed && "absolute top-52  -right-3"} p-1 rounded-full hover:bg-gray-200 focus:outline-none  focus:ring-2 focus:ring-gray-300`}
         >
-          {isCollapsed ? <ChevronRight className="w-6 h-6" /> : <ChevronLeft className="w-6 h-6" />}
+          {isCollapsed ? <ChevronRight className="w-4 h-4 " /> : <ChevronLeft className="w-6 h-6" />}
         </button>
       </div>
       <nav className="mt-0">

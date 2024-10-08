@@ -6,9 +6,9 @@ export default function Home() {
   return (
     <div className="flex h-screen bg-gray-100 text-gray-900">
       <Sidebar />
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col overflow-hidden ml-16 sm:ml-0">
         <Navbar />
-        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100">
+        <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 ">
           <Dashboard />
         </main>
       </div>
