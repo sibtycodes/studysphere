@@ -3,17 +3,22 @@
 import { useState } from 'react'
 import { Bell, Home, BookOpen, User, Settings, LogOut, Menu } from 'lucide-react'
 import Link from 'next/link'
-
+import logo from "@/public/logo.png"
+import { usePathname } from 'next/navigation'
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <nav className="bg-white shadow-md">
+    <nav className="bg-white shadow-md text-gray-900">
+     
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
+          <div className="flex-shrink-0 flex items-center">
+            <h2 className="text-xl font-semibold text-gray-800">Study Sphere</h2>
+          </div>
             <div className="flex-shrink-0">
-              <svg className="h-8 w-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className=" size-5 ml-2 text-orange-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
@@ -68,18 +73,30 @@ const Navbar = () => {
   )
 }
 
-const NavLink = ({ href, icon, text, mobile = false }:any) => (
-  <Link
-    href={href}
-    className={`${
-      mobile
-        ? 'text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium'
-        : 'text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium'
-    } flex items-center`}
-  >
-    {icon}
-    <span className="ml-2">{text}</span>
-  </Link>
-)
+const NavLink = ({ href, icon, text, mobile = false }:any) => {
+  const pathname = usePathname()
+  const isActive = pathname === href
+
+  return (
+    <Link
+      href={href}
+      className={`${
+        mobile
+          ? 'block px-3 py-2 rounded-md text-base font-medium'
+          : 'px-3 py-2 rounded-md text-sm font-medium'
+      } flex items-center relative ${
+        isActive ? 'text-orange-700' : 'text-gray-500 hover:text-gray-700'
+      } transition-colors duration-200`}
+    >
+      <span className={`${isActive ? 'opacity-100' : 'opacity-70'}`}>
+        {icon}
+      </span>
+      <span className={`ml-2 ${isActive ? 'opacity-100' : 'opacity-70'}`}>{text}</span>
+      {isActive && (
+        <span className="absolute bottom-0 left-0 w-full h-1 bg-orange-700 transform origin-left transition-transform duration-300 ease-out"></span>
+      )}
+    </Link>
+  )
+}
 
 export default Navbar

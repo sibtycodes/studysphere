@@ -25,3 +25,23 @@ body {
     text-wrap: balance;
   }
 }
+
+/* //make custom scrollbar 
+ */
+
+.customs::-webkit-scrollbar {
+  width: 10px;
+}
+
+.customs::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.customs::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.customs::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
